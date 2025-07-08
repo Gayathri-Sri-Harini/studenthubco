@@ -1,38 +1,38 @@
-
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from sqlmodel import Session, select
-from passlib.context import CryptContext
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-import os
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/")
-def read_index():
-    return FileResponse("static/index.html")
-
+from sqlmodel import Session, select
+from passlib.context import CryptContext
 
 from database import create_db, get_session
 from models import Student, Project, ProjectMembership, Comment, Message, DirectMessage
 
+# ✅ Create app first
 app = FastAPI(title="Student Collaboration Hub")
 
+# ✅ Mount static files (frontend)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# ✅ Serve frontend HTML
+@app.get("/")
+def read_index():
+    return FileResponse("static/index.html")
+
+# ✅ Enable CORS for frontend JS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], allow_credentials=True,
     allow_methods=["*"], allow_headers=["*"],
 )
 
+# ✅ Password encryption
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+# ✅ DB initialize
 create_db()
 
-@app.get("/")
-def home():
-    return {"message": "Welcome to the Student Hub API"}
-
+# ========== API Routes ==========
 @app.post("/login")
 def login(data: dict, session: Session = Depends(get_session)):
     username = data.get("username")
@@ -46,14 +46,11 @@ def login(data: dict, session: Session = Depends(get_session)):
 def register(data: dict, session: Session = Depends(get_session)):
     username = data.get("username")
     password = data.get("password")
-
     if not username or not password:
         raise HTTPException(status_code=400, detail="Missing username or password")
-
     existing = session.exec(select(Student).where(Student.name == username)).first()
     if existing:
         raise HTTPException(status_code=400, detail="Student already exists")
-
     hashed_pw = pwd_context.hash(password)
     student = Student(name=username, password=hashed_pw, avatar=username[0].upper())
     session.add(student)
