@@ -1,0 +1,62 @@
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #eef2f3, #c9d6ff);
+  margin: 0;
+  padding: 2rem;
+  color: #333;
+}
+
+h1, h2 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 700px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 95%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+button {
+  background: #4CAF50;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  margin: 0.3rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #388e3c;
+}
+
+#currentUser {
+  font-weight: bold;
+  color: #1e88e5;
+  text-align: center;
+  margin-bottom: 1rem;
+}
