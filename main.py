@@ -16,8 +16,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # ✅ Serve frontend HTML
 @app.get("/")
-def read_index():
-    return FileResponse("static/index.html")
+def read_login():
+    return FileResponse("static/login.html")
+
 
 # ✅ Enable CORS for frontend JS
 app.add_middleware(
