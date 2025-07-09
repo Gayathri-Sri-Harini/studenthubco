@@ -4,20 +4,18 @@
   <meta charset="UTF-8" />
   <title>Student Hub Login</title>
   <link rel="stylesheet" href="/static/style.css" />
-  <!-- Load config (for API_URL) first -->
-  <script src="/static/config.js" defer></script>
-  <!-- Load auth logic -->
-  <script src="/static/auth.js" defer></script>
 </head>
 <body>
   <h2>Student Login</h2>
-
-  <input type="text" id="username" placeholder="Username" />
-  <input type="password" id="password" placeholder="Password" />
-
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  
   <button onclick="login(event)">Login</button>
   <button onclick="register(event)">Register</button>
-
   <p id="authStatus" style="color: red;"></p>
+
+  <!-- ✅ Only include scripts ONCE at the END -->
+  <script src="/static/config.js"></script>
+  <script src="/static/auth.js"></script>
 </body>
 </html>

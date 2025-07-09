@@ -1,6 +1,5 @@
-const API_URL = "https://studenthubco.onrender.com";
 function login(event) {
-  event.preventDefault(); // ⛔ Prevent form flickering or reload
+  event.preventDefault(); // ⛔ Prevent page reload
 
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -18,12 +17,13 @@ function login(event) {
       localStorage.setItem("student", data.username);
       window.location.href = "/static/dashboard.html"; // ✅ Redirect
     })
-    .catch(err => {
+    .catch(() => {
       document.getElementById("authStatus").innerText = "Login failed. Try again.";
     });
 }
+
 function register(event) {
-  event.preventDefault(); // ⛔ Prevent reload on submit
+  event.preventDefault(); // ⛔ Prevent page reload
 
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -41,7 +41,7 @@ function register(event) {
       localStorage.setItem("student", data.username);
       window.location.href = "/static/dashboard.html"; // ✅ Redirect
     })
-    .catch(err => {
+    .catch(() => {
       document.getElementById("authStatus").innerText = "Registration failed. Try again.";
     });
 }
