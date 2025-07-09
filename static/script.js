@@ -73,7 +73,7 @@ function logout() {
 window.onload = () => {
   const user = localStorage.getItem("student");
   if (!user) {
-    window.location.href = "/";
+    window.location.href = "/static/login.html";
   } else {
     document.getElementById("currentUser").innerText = `Logged in as ${user}`;
   }
