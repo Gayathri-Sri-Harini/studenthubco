@@ -1,10 +1,11 @@
-const API_URL = "https://studenthubco.onrender.com";
+
 window.location.href = "/static/dashboard.html";
 
 
 function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
+
 
   fetch(`${API_URL}/login`, {
     method: "POST",
