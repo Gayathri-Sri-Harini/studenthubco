@@ -8,39 +8,32 @@ from passlib.context import CryptContext
 from database import create_db, get_session
 from models import Student, Project, ProjectMembership, Comment, Message, DirectMessage
 
-# ✅ Create app
+# ✅ Create app first
 app = FastAPI(title="Student Collaboration Hub")
 
-# ✅ Mount static files (CSS, JS, HTML)
+# ✅ Mount static files (frontend)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ✅ Serve Login page
+# ✅ Serve frontend HTML
 @app.get("/")
 def read_login():
     return FileResponse("static/login.html")
 
-# ✅ Serve Dashboard page
-@app.get("/dashboard")
-def read_dashboard():
-    return FileResponse("static/index.html")
 
-# ✅ CORS for frontend
+# ✅ Enable CORS for frontend JS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], allow_credentials=True,
     allow_methods=["*"], allow_headers=["*"],
 )
 
-# ✅ Password hashing
+# ✅ Password encryption
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# ✅ On server start, create DB tables
-@app.on_event("startup")
-def on_startup():
-    create_db()
+# ✅ DB initialize
+create_db()
 
-# ===================== 👇 API ROUTES 👇 =====================
-
+# ========== API Routes ==========
 @app.post("/login")
 def login(data: dict, session: Session = Depends(get_session)):
     username = data.get("username")

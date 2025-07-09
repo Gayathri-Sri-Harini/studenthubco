@@ -10,12 +10,14 @@ function login() {
     body: JSON.stringify({ username, password })
   })
     .then(res => {
-      if (!res.ok) throw new Error("Invalid credentials");
+      if (!res.ok) {
+        throw new Error("Invalid credentials");
+      }
       return res.json();
     })
     .then(data => {
       localStorage.setItem("student", data.username);
-      window.location.href = "/static/index.html";
+      window.location.href = "/static/dashboard.html";  // ✅ Redirect here
     })
     .catch(err => {
       document.getElementById("authStatus").innerText = "Login failed. Try again.";
@@ -32,12 +34,14 @@ function register() {
     body: JSON.stringify({ username, password })
   })
     .then(res => {
-      if (!res.ok) throw new Error("Registration failed");
+      if (!res.ok) {
+        throw new Error("Registration failed");
+      }
       return res.json();
     })
     .then(data => {
       localStorage.setItem("student", data.username);
-      window.location.href = "/static/index.html";
+      window.location.href = "/static/dashboard.html";  // ✅ Redirect here too
     })
     .catch(err => {
       document.getElementById("authStatus").innerText = "Registration failed. Try again.";
