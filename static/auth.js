@@ -1,14 +1,8 @@
-
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://studenthubco.onrender.com";
 
 function login() {
-  const username = document.getElementById("loginName").value.trim();
-  const password = document.getElementById("loginPass").value.trim();
-
-  if (!username || !password) {
-    showError("Please enter both username and password.");
-    return;
-  }
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   fetch(`${API_URL}/login`, {
     method: "POST",
@@ -21,19 +15,16 @@ function login() {
     })
     .then(data => {
       localStorage.setItem("student", data.username);
-      window.location.href = "index.html";
+      window.location.href = "/static/index.html";
     })
-    .catch(() => showError("Login failed. Check your credentials."));
+    .catch(err => {
+      document.getElementById("authStatus").innerText = "Login failed. Try again.";
+    });
 }
 
 function register() {
-  const username = document.getElementById("loginName").value.trim();
-  const password = document.getElementById("loginPass").value.trim();
-
-  if (!username || !password) {
-    showError("Please enter both username and password.");
-    return;
-  }
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   fetch(`${API_URL}/register`, {
     method: "POST",
@@ -41,16 +32,14 @@ function register() {
     body: JSON.stringify({ username, password })
   })
     .then(res => {
-      if (!res.ok) throw new Error("User already exists");
+      if (!res.ok) throw new Error("Registration failed");
       return res.json();
     })
     .then(data => {
-      alert("Registered successfully!");
-      login();
+      localStorage.setItem("student", data.username);
+      window.location.href = "/static/index.html";
     })
-    .catch(() => showError("Registration failed. Try a different name."));
-}
-
-function showError(msg) {
-  document.getElementById("authStatus").innerText = msg;
+    .catch(err => {
+      document.getElementById("authStatus").innerText = "Registration failed. Try again.";
+    });
 }
