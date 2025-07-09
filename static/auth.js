@@ -1,5 +1,6 @@
 const API_URL = "https://studenthubco.onrender.com";
-window.location.href = "/dashboard";
+
+window.location.href = "/static/index.html";
 
 function login() {
   const username = document.getElementById("username").value.trim();
