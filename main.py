@@ -58,6 +58,9 @@ def register(data: dict, session: Session = Depends(get_session)):
     session.commit()
     session.refresh(student)
     return {"username": student.name}
+@app.get("/dashboard")
+def dashboard():
+    return FileResponse("static/dashboard.html")
 
 @app.get("/students")
 def list_students(session: Session = Depends(get_session)):

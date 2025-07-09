@@ -65,6 +65,19 @@ function loadDirectMessages() {
     ).join("");
   });
 }
+function logout() {
+  localStorage.removeItem("student");
+  window.location.href = "/";
+}
+
+window.onload = () => {
+  const user = localStorage.getItem("student");
+  if (!user) {
+    window.location.href = "/";
+  } else {
+    document.getElementById("currentUser").innerText = `Logged in as ${user}`;
+  }
+};
 
 getStudents();
 getProjects();
