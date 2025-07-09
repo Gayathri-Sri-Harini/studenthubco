@@ -1,3 +1,6 @@
+if (!window.API_URL) {
+  const API_URL = "https://studenthubco.onrender.com";
+}
 // static/script.js
 function logout() {
   localStorage.removeItem("student");

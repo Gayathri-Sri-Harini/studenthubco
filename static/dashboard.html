@@ -1,53 +1,24 @@
+<!-- static/dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Student Collaboration Hub</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <h1>Student Collaboration Hub</h1>
+    window.location.href = "/static/index.html";
 
-  <section>
-    <h2>Welcome</h2>
-    <p id="currentUser"></p>
-    <button onclick="logout()">Logout</button>
-  </section>
+  <h1>Welcome to the Student Dashboard</h1>
+  <p id="currentUser">Logged in as: <span></span></p>
 
-  <section>
-    <h2>All Students</h2>
-    <button onclick="getStudents()">Refresh Students</button>
-    <div id="studentsList"></div>
-  </section>
-
-  <section>
-    <h2>Create Project</h2>
-    <input type="text" id="projectTitle" placeholder="Project title" />
-    <input type="text" id="projectDesc" placeholder="Project description" />
-    <button onclick="createProject()">Create</button>
-  </section>
-
-  <section>
-    <h2>All Projects</h2>
-    <button onclick="getProjects()">Refresh Projects</button>
-    <div id="projectsList"></div>
-  </section>
-
-  <section>
-    <h2>Messages</h2>
-    <textarea id="messageInput" placeholder="Type a message..."></textarea><br />
-    <button onclick="sendMessage()">Send Message</button>
-    <div id="messagesList"></div>
-  </section>
-
-  <section>
-    <h2>Direct Messages</h2>
-    <input type="text" id="dmRecipient" placeholder="To (username)" />
-    <textarea id="dmContent" placeholder="Your message..."></textarea><br />
-    <button onclick="sendDirectMessage()">Send DM</button>
-    <div id="dmList"></div>
-  </section>
-
-  <script src="/static/script.js"></script>
+  <script>
+    const username = localStorage.getItem("student");
+    if (!username) {
+      window.location.href = "/";  // redirect to login if not logged in
+    } else {
+      document.querySelector("#currentUser span").innerText = username;
+    }
+  </script>
 </body>
 </html>

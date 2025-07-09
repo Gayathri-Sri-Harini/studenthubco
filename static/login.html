@@ -5,17 +5,20 @@
   <meta charset="UTF-8" />
   <title>Student Hub Login</title>
   <link rel="stylesheet" href="/static/style.css" />
+  <script src="/static/auth.js"></script>
 </head>
 <body>
   <h2>Student Login</h2>
   <input type="text" id="username" placeholder="Username">
   <input type="password" id="password" placeholder="Password">
-  <button onclick="login()">Login</button>
+ <button onclick="login(event)">Login</button>
+
+<script src="/static/auth.js"></script>
   <button onclick="register()">Register</button>
   <p id="authStatus" style="color: red;"></p>
 
   <script src="/static/config.js"></script>
-<script src="/static/auth.js"></script> <!-- or script.js -->
+<!-- or script.js -->
 
 </body>
 </html>

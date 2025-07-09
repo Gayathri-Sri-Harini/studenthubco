@@ -1,10 +1,11 @@
 
-window.location.href = "/static/dashboard.html";
 
 
-function login() {
+
+function login(event) {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
+
 
 
   fetch(`${API_URL}/login`, {
@@ -27,7 +28,7 @@ function login() {
     });
 }
 
-function register() {
+function register(event) {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value.trim();
 
@@ -50,3 +51,4 @@ function register() {
       document.getElementById("authStatus").innerText = "Registration failed. Try again.";
     });
 }
+window.location.href = "/static/index.html";
